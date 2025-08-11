@@ -1,0 +1,146 @@
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 16px;
+  color: white;
+  background-color: black;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+h1 {
+  font-family: 'Bangers', cursive;
+  font-size: 58px;
+  color: white;
+   letter-spacing: 3px; /* increase spacing between letters */
+}
+
+.subtitle {
+  font-size: 18px;
+  font-style: italic;
+  margin-top: -40px;
+  margin-bottom: 30px;
+  color: white;
+}
+.background-shapes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* Common style for all blobs */
+.blob {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  opacity: 0.25;
+  filter: blur(40px);
+  animation: floaty 12s ease-in-out infinite;
+}
+
+/* Each blob gets a unique color and location */
+.blob1 {
+  background: #ff6b6b;
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.blob2 {
+  background: #6bc6ff;
+  top: 60%;
+  left: 80%;
+  animation-delay: 2s;
+}
+
+.blob3 {
+  background: #ffe66d;
+  top: 30%;
+  left: 50%;
+  animation-delay: 4s;
+}
+
+.blob4 {
+  background: #a066ff;
+  top: 80%;
+  left: 20%;
+  animation-delay: 6s;
+}
+
+@keyframes floaty {
+  0%, 100% {
+    transform: translateY(0px) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-40px) scale(1.2) rotate(20deg);
+  }
+}
+
+.image img {
+  width: 140px; /* adjust size */
+  height: auto;
+  position: absolute; /* take it out of the normal flow */
+  top: -5px; /* distance from top */
+  left: 20px; /* distance from left */
+}
+
+.banner {
+  position: absolute;
+  width: 100vw;           /* take full width of viewport */
+  margin: 0;              /* remove any gaps */
+  margin-top: -20px;
+}
+
+.banner img {
+  width: 100%;            /* scale image to container */
+  height: auto;           /* keep proportions */
+  display: block;         /* remove bottom inline gap */
+  opacity: 0.7; /* 0 = fully transparent, 1 = fully visible */
+}
+
+.banner-text {
+  position: absolute;
+  top: 27%;        /* move down from the top */
+  left: 7%;        /* keep it away from the edge */
+  color: rgb(255, 255, 255);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 18px;
+  max-width: 28%;
+  line-height: 1.5;
+  text-align: left; /* ensures lines are left-aligned */
+}
+
+.banner-text p {
+  margin: 0 0 10px;
+}
+
+.play-btn {
+  position: absolute;
+  top: 65%;        /* move down from the top */
+  left: 7%;        /* keep it away from the edge */
+  font-family: 'Bangers', cursive;
+  text-decoration: none; /* removes underline */
+  font-size: 18px;
+    letter-spacing: 2px; /* increase spacing between letters */
+  color: white;
+  background-color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 12px;
+}
+
+.play-btn:hover {
+  background-color: #494949;
+}
+
+body.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}

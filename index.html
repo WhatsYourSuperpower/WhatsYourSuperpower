@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>What's Your Superpower?</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<div> 
+  <div class="image">
+  <img src="VKT logo.png" alt="VKT">
+</div>
+
+</div>
+  <h1>What’s Your Superpower?</h1>
+  <p class="subtitle">A card game adapted by VK Transformation to foster team synergy.</p>
+<div class="banner">
+  <img src="Banner1.png" alt="Superhero Banner">
+    <div class="banner-text">
+    <p>The best teams thrive on diversity.</p>
+    <p>This game discovers the unique skillset you bring to the table.</p>
+    <p>Ready to find out what makes you, <em>you?</em></p>
+  </div>
+</div>
+<a href="game.html" class="play-btn">Let’s Play!</a>
+<script>
+  const playBtn = document.querySelector('.play-btn');
+  if (playBtn) {
+    playBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.body.classList.add('fade-out');
+      setTimeout(() => {
+        window.location.href = this.href;
+      }, 500); 
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>What's Your Superpower?</title>
+  <link rel="stylesheet" href="game.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-shapes">
+      <div class="blob blob1"></div>
+      <div class="blob blob2"></div>
+      <div class="blob blob3"></div>
+      <div class="blob blob4"></div>
+    </div>
+    <p class="game-instructions" id="instructions">Click on the card that feels most like you!</p>
+    <p class="reveal-message" id="reveal" style="display: none;">CONGRATULATIONS! <br> You’ve found your superpower!</p>
+
+    <div class="card-and-button">
+      <div class="card-container">
+        <img src="cards/1%282%29.png" alt="Card 1" class="card" id="card1" />
+        <img src="cards/2%282%29.png" alt="Card 2" class="card" id="card2" />
+      </div>
+      <button id="play-again" style="display: none;" class="play-again-btn">Play Again</button>
+    </div>
+
+<script>
+  let gameOver = false;
+  const cards = [
+    "1%282%29.png", "2%282%29.png", "3%282%29.png", "4%282%29.png", "5%282%29.png",
+    "6%282%29.png", "7%282%29.png", "8%282%29.png", "9%282%29.png", "10%282%29.png",
+    "11%282%29.png", "12%282%29.png", "13%282%29.png", "14%282%29.png", "15%282%29.png",
+    "16%282%29.png", "17%282%29.png", "18%282%29.png", "19%282%29.png", "20%282%29.png",
+    "21%282%29.png"
+  ];
+
+  let remainingCards = [...cards];
+  let currentPair = [remainingCards[0], remainingCards[1]];
+
+  const card1 = document.getElementById("card1");
+  const card2 = document.getElementById("card2");
+
+  function showPair() {
+    card1.src = `cards/${currentPair[0]}`;
+    card2.src = `cards/${currentPair[1]}`;
+  }
+
+  function chooseCard(index) {
+    if (gameOver) return;
+    const chosen = currentPair[index];
+    const nextCard = remainingCards.find(c => !currentPair.includes(c));
+
+    // Rebuild remainingCards by keeping chosen and discarding the other
+    remainingCards = remainingCards.filter(c => c === chosen || !currentPair.includes(c));
+
+    if (!nextCard) {
+      const finalFront = chosen.replace("%282%29.png", "%281%29.png"); // swap (2) → (1)
+      card1.src = `cards/${finalFront}`;
+      card2.style.display = "none";
+      gameOver = true;
+
+      document.getElementById("instructions").style.display = "none";
+      document.getElementById("reveal").style.display = "block";
+      document.getElementById("play-again").style.display = "block";
+
+      return;
+    }
+
+    // Replace only the discarded card with a new one
+    currentPair[index] = chosen; // keep chosen in same position
+    currentPair[1 - index] = nextCard; // update the other slot
+
+    showPair();
+  }
+
+  // Event listeners
+  card1.addEventListener("click", () => chooseCard(0));
+  card2.addEventListener("click", () => chooseCard(1));
+
+  document.getElementById("play-again").addEventListener("click", () => {
+    gameOver = false;
+    remainingCards = [...cards];
+    currentPair = [remainingCards[0], remainingCards[1]];
+
+    card1.style.display = "block";
+    card2.style.display = "block";
+    document.getElementById("reveal").style.display = "none";
+    document.getElementById("play-again").style.display = "none";
+    document.getElementById("instructions").style.display = "block";
+
+    showPair();
+  });
+
+  // Start game
+  showPair();
+</script>
+</body>
+</html>
